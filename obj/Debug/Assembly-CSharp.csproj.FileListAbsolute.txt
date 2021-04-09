@@ -1,0 +1,2 @@
+E:\Cloud\Проекты\Incredible Grocery\Incredible Grocery\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+E:\Cloud\Проекты\Incredible Grocery\Incredible Grocery\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
