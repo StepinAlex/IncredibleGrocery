@@ -904,7 +904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af43d3be86d1b224eaef8d260e6572de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundsVol: 0
   appearSound: {fileID: 8300000, guid: 81fe1beb9b3a324429e80d1e45905f65, type: 3}
   disappearSound: {fileID: 8300000, guid: c13093bce2e588843b65a4e8aea8b832, type: 3}
   clickSound: {fileID: 8300000, guid: 49df5d9256136934abb3ba36e0640ba3, type: 3}
@@ -976,9 +975,9 @@ MonoBehaviour:
   - {fileID: 7042607377555551815}
   - {fileID: 191472153}
   - {fileID: 29012045}
-  changeTime: 3
-  storeZone: 1750
-  speed: 600
+  changeTime: 5
+  storeZone: 1650
+  speed: 700
 --- !u!82 &57467339
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2781,7 +2780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 428, y: 35}
+  m_AnchoredPosition: {x: 350, y: 40}
   m_SizeDelta: {x: 622.6299, y: 901.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348030635
@@ -5374,7 +5373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -535, y: -72.8}
+  m_AnchoredPosition: {x: -488, y: -72.8}
   m_SizeDelta: {x: 336.131, y: 145.5995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1130281193
@@ -6141,8 +6140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
-  musicVol: 1
-  soundVol: 1
+  musicVol: 0
+  soundVol: 0
   scoreText: {fileID: 70565302}
   SettingsWin: {fileID: 1094500545}
   sellingController: {fileID: 57467338}

@@ -43,41 +43,45 @@ public class GameManager : MonoBehaviour
         musicVol = PlayerPrefs.GetFloat("MusicPlay", 1);
         soundVol = PlayerPrefs.GetFloat("SoundPlay", 1);
         SetMusVolume(musicVol);
-        SetMusVolume(soundVol);
+        SetVolume(soundVol);
     }
 
     public void SetMusVolume(float val)
     {
         playMusic.GetComponent<AudioSource>().volume = val;
 
-        if (musicVol == 0)
-        {
-            musicOff.gameObject.SetActive(false);
-            musicOn.gameObject.SetActive(true);
-        }
-        else
+        if (val == 0)
         {
             musicOff.gameObject.SetActive(true);
             musicOn.gameObject.SetActive(false);
         }
+        else
+        {
+            musicOff.gameObject.SetActive(false);
+            musicOn.gameObject.SetActive(true);
+        }
+        musicVol = val;
+        Debug.Log("Music Vol = " + musicVol);
     }
 
 
     public void SetVolume(float val)
     {
-        sellingController.SetVolume(val);
 
-        if (soundVol == 0)
+        if (val == 0)
         {
-            soundOff.gameObject.SetActive(false);
-            soundOn.gameObject.SetActive(true);
+            soundOff.gameObject.SetActive(true);
+            soundOn.gameObject.SetActive(false);
         }
         else
         {
-            soundOff.gameObject.SetActive(true);
-            soundOn.gameObject.SetActive(false); 
+            soundOff.gameObject.SetActive(false);
+            soundOn.gameObject.SetActive(true);
+            
         }
-
+        soundVol = val;
+        sellingController.SetVolume(soundVol);
+        Debug.Log("Soundc Vol = " + soundVol);
     }
 
 

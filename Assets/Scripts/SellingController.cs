@@ -157,34 +157,31 @@ public class SellingController : MonoBehaviour
         do
         {
             wantProducts[selected] = Random.Range(0, productsPrefab.Length - 1);
-            
-            if (selected == 0 || selected >= 1 && (wantProducts[selected] != wantProducts[selected - 1]
-                || selected == 2 && wantProducts[selected] != wantProducts[selected - 2]))
-            {
-                 if (selected == 0)
+
+                 if (selected == 0 )
                 {
                     firstWant = wantProducts[selected];
                     productsPrefab[firstWant].gameObject.SetActive(true);
                     productsPrefab[firstWant].gameObject.transform.position = buySlot1.transform.position;
-                    
+                    selected = selected + 1;
                 }
-                else if (selected == 1)
+                else if (selected == 1 && (wantProducts[selected] != wantProducts[selected - 1]))
                 {
                     secondWant = wantProducts[selected];
                     productsPrefab[secondWant].gameObject.SetActive(true);
                     productsPrefab[secondWant].gameObject.transform.position = buySlot2.transform.position;
-                    
+                    selected = selected + 1;
                 }
-                else if (selected == 2)
+                else if (selected == 2 && (wantProducts[selected] != wantProducts[selected - 1]) 
+                    && (wantProducts[selected] != wantProducts[selected - 2]))
                 {
                     thirdWant = wantProducts[selected];
                     productsPrefab[thirdWant].gameObject.SetActive(true);
                     productsPrefab[thirdWant].gameObject.transform.position = buySlot3.transform.position;
-                    
+                    selected = selected + 1;
                 }
-                Debug.Log("Selected product is: " + productsPrefab[wantProducts[selected]].gameObject.name);
-                selected = selected + 1;
-            }
+                //Debug.Log("Selected product is: " + productsPrefab[wantProducts[selected]].gameObject.name);
+                
         }
         while (selected != amount);
 
@@ -480,6 +477,7 @@ public class SellingController : MonoBehaviour
     {
         GetComponent<AudioSource>().volume = val;
         soundsVol = val;
+        Debug.Log("soundsVol set " + soundsVol);
     }
 
         void OnTriggerEnter2D(Collider2D other)
