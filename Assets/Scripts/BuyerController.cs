@@ -30,47 +30,39 @@ public class BuyerController : MonoBehaviour
 
     void Update()
     {
-
+        //Изменение таймера
         if (buying & timer > 0)
         {
             timer -= Time.deltaTime;
         }
-        else if (timer < 0)
-        {
-
-        }
-
 
     }
 
     void FixedUpdate()
     {
+        //Активация движения покуателя
         pos = buyerRB.position;
         Vector2 position = buyerRB.position;
 
-        if (!buying)
+        if (!buying) //Идет к кассе
         {
             position.x = position.x + 4 * speed * Time.deltaTime * direction;
             position.y = position.y - speed * Time.deltaTime * direction;
             anim.SetBool("isWalk", true);
             anim.SetBool("Back", false);
         }
-
-        else if (bought) //pos.x > -8.0f
+        else if (bought) //Идет от кассы
         {
-
             position.x = position.x + 4 * speed * Time.deltaTime * direction;
             position.y = position.y - speed * Time.deltaTime * direction;
 
             anim.SetBool("isWalk", true);
             anim.SetBool("Back", true);
         }
-
-
         buyerRB.MovePosition(position);
     }
 
-
+    //Начало покупки
     public void StartBuying()
     {
         buying = true;
@@ -78,7 +70,7 @@ public class BuyerController : MonoBehaviour
         anim.SetBool("Back", false);
     }
 
-
+    //Сделал покупку, выражает удовлетворенность и начниает идти на выход
     public void HaveProducts(bool satisfaction)
     {
         emoCloud.gameObject.SetActive(true);
@@ -97,7 +89,7 @@ public class BuyerController : MonoBehaviour
         anim.SetBool("Back", true);
     }
 
-
+    //Уходит из магазина
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Entrance"))

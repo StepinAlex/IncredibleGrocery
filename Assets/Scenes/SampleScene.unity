@@ -904,6 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af43d3be86d1b224eaef8d260e6572de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundsVol: 0
   appearSound: {fileID: 8300000, guid: 81fe1beb9b3a324429e80d1e45905f65, type: 3}
   disappearSound: {fileID: 8300000, guid: c13093bce2e588843b65a4e8aea8b832, type: 3}
   clickSound: {fileID: 8300000, guid: 49df5d9256136934abb3ba36e0640ba3, type: 3}
@@ -5373,7 +5374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -488, y: -72.8}
+  m_AnchoredPosition: {x: -488, y: -72.8125}
   m_SizeDelta: {x: 336.131, y: 145.5995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1130281193
@@ -9503,10 +9504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2140, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

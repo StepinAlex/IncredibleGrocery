@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public bool gameIsPaused;
 
+    //Загрузка сохраненных данных из прошлой игры
     void Start()
     {
         sellingController = GameObject.Find("CashDesk").GetComponent<SellingController>();
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         SetVolume(soundVol);
     }
 
+    //Установка громкости музыки
     public void SetMusVolume(float val)
     {
         playMusic.GetComponent<AudioSource>().volume = val;
@@ -61,13 +63,11 @@ public class GameManager : MonoBehaviour
             musicOn.gameObject.SetActive(true);
         }
         musicVol = val;
-        Debug.Log("Music Vol = " + musicVol);
     }
 
-
+    //Установка громкости звуков
     public void SetVolume(float val)
     {
-
         if (val == 0)
         {
             soundOff.gameObject.SetActive(true);
@@ -81,7 +81,6 @@ public class GameManager : MonoBehaviour
         }
         soundVol = val;
         sellingController.SetVolume(soundVol);
-        Debug.Log("Soundc Vol = " + soundVol);
     }
 
 
@@ -90,10 +89,9 @@ public class GameManager : MonoBehaviour
         money += scoreToAdd;
         scoreText.text = "$ " + money;
         PlayerPrefs.SetInt("MoneyScore", money);
-
     }
 
-
+    //Включение / отключение звуков из опций
     public void SoundsOn()
     {
         soundVol = 1;
@@ -112,7 +110,7 @@ public class GameManager : MonoBehaviour
         playAudio.PlayOneShot(clickSound, soundVol);
     }
 
-
+    //Включение / отключение музыки из опций
     public void MusicOn()
     {
         musicVol = 1;
@@ -131,7 +129,7 @@ public class GameManager : MonoBehaviour
         playAudio.PlayOneShot(clickSound, soundVol);
     }
 
-
+    //Открытие окна настроек и установка игры на паузу
     public void OpenSettings()
     {
         gameIsPaused = true;
@@ -140,6 +138,7 @@ public class GameManager : MonoBehaviour
         playAudio.PlayOneShot(clickSound, soundVol);
     }
 
+    //Сохранение настроек
     public void SaveSettings()
     {
         PlayerPrefs.SetFloat("MusicPlay", musicVol);
@@ -149,7 +148,5 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         playAudio.PlayOneShot(clickSound, soundVol);
     }
-
-
 
 }

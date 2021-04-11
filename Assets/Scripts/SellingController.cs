@@ -47,7 +47,6 @@ public class SellingController : MonoBehaviour
     public GameObject buySlot2;
     public GameObject buySlot3;
 
-
     public GameObject sellCloud;
     public GameObject cloudMask;
     public GameObject sellSlot1;
@@ -57,7 +56,6 @@ public class SellingController : MonoBehaviour
     public GameObject[] noIcons;
 
     private GameManager gameManager;
-
 
     int firstWant;
     int secondWant;
@@ -144,47 +142,44 @@ public class SellingController : MonoBehaviour
         return amount;
     }
 
-
+    //√енерируем случайное количество продуктов от 1 до 3
     public void GenerateProducts()
     {
-
         RandomAmount();
 
         int selected = 0;
         int[] wantProducts = new int[amount];
-        Debug.Log("Want " + amount + " products");
 
+        //ƒелаем генерацию без повторов, пока не будет нужное количество
         do
         {
             wantProducts[selected] = Random.Range(0, productsPrefab.Length - 1);
 
                  if (selected == 0 )
-                {
+                 {
                     firstWant = wantProducts[selected];
                     productsPrefab[firstWant].gameObject.SetActive(true);
                     productsPrefab[firstWant].gameObject.transform.position = buySlot1.transform.position;
                     selected = selected + 1;
-                }
-                else if (selected == 1 && (wantProducts[selected] != wantProducts[selected - 1]))
-                {
+                 }
+                 else if (selected == 1 && (wantProducts[selected] != wantProducts[selected - 1]))
+                 {
                     secondWant = wantProducts[selected];
                     productsPrefab[secondWant].gameObject.SetActive(true);
                     productsPrefab[secondWant].gameObject.transform.position = buySlot2.transform.position;
                     selected = selected + 1;
-                }
-                else if (selected == 2 && (wantProducts[selected] != wantProducts[selected - 1]) 
+                 }
+                 else if (selected == 2 && (wantProducts[selected] != wantProducts[selected - 1]) 
                     && (wantProducts[selected] != wantProducts[selected - 2]))
-                {
+                 {
                     thirdWant = wantProducts[selected];
                     productsPrefab[thirdWant].gameObject.SetActive(true);
                     productsPrefab[thirdWant].gameObject.transform.position = buySlot3.transform.position;
                     selected = selected + 1;
-                }
-                //Debug.Log("Selected product is: " + productsPrefab[wantProducts[selected]].gameObject.name);
+                 }
                 
         }
         while (selected != amount);
-
 
         buyCloud.gameObject.SetActive(true);
         buySlot1.gameObject.SetActive(true);
@@ -196,10 +191,9 @@ public class SellingController : MonoBehaviour
         select = 0;
     }
 
-
+    //ѕо€вл€ем панель и пр€ем облачко с продуктами
     void ShowPanel()
     {
-
         buySlot1.gameObject.SetActive(false);
         buySlot2.gameObject.SetActive(false);
         buySlot3.gameObject.SetActive(false);
@@ -226,10 +220,9 @@ public class SellingController : MonoBehaviour
         sellMask.gameObject.SetActive(true);
     }
 
-
+    //јвтоматическое распределение галочек дл€ оставшихс€ выборов игрока
     public void SelectProduct(int SelectedProduct)
     {
-
         if (select < amount)
         {
             if (sel1 == false )
@@ -256,15 +249,14 @@ public class SellingController : MonoBehaviour
             }
             selectButtons[SelectedProduct].gameObject.SetActive(false);
             select = select + 1;
-            Debug.Log("Product selected " + selectButtons[SelectedProduct].name);
             playAudio.PlayOneShot(selectSound, soundsVol); //звук выбора продукта в инвентаре.
         }
         CheckSell();
     }
 
+    //—н€тие выбора по нажатию на галочку
     public void ClearSelect(int selectedNumber)
     {
-
         int prevSelect = 0;
 
         if (selectedNumber == 1)
@@ -290,13 +282,11 @@ public class SellingController : MonoBehaviour
         }
 
         selectButtons[prevSelect].gameObject.SetActive(true);
-
-        Debug.Log("selecting " + selectedNumber + " is cleared");
         CheckSell();
-        
-        
+
     }
 
+    //ѕроверка готовности сделанных нужного количества выборов
     void CheckSell()
     {
         if (select == amount)
@@ -312,15 +302,16 @@ public class SellingController : MonoBehaviour
         playAudio.PlayOneShot(clickSound, soundsVol); 
     }
 
+    //ѕодтверждение всех сдлеанных выборов и переход к проверке
     public void ConfirmSell()
     {
         slideRight = true;
         playAudio.PlayOneShot(clickSound, soundsVol); 
     }
 
+    //ѕоказ облачка с выбранными продкутами
     public void ShowSelection()
     {
-        
         cloudMask.gameObject.SetActive(false);
         productsPrefab[firstSelect].gameObject.SetActive(true);
         productsPrefab[firstSelect].gameObject.transform.position = sellSlot1.transform.position;
@@ -341,7 +332,7 @@ public class SellingController : MonoBehaviour
             productsPrefab[thirdSelect].gameObject.transform.position = sellSlot3.transform.position;
         }
 
-
+        //—н€тие всех ранее сделаных выборов дл€ следующего покупател€
         sellCloud.gameObject.SetActive(true);
         firstRight = false;
         secondRight = false;
@@ -357,11 +348,11 @@ public class SellingController : MonoBehaviour
         
     }
 
+    //ѕроверка правиельности полобранных продуктов
     public void CheckSelection()
     {
         cloudMask.gameObject.SetActive(true);
         
-
         if (check == 0)
         {
              if (firstSelect == firstWant || firstSelect == secondWant || firstSelect == thirdWant)
@@ -425,9 +416,9 @@ public class SellingController : MonoBehaviour
            checking = false;
            CheckResults();
         }
-
     }
 
+    //ќкончание проверки и оплата заказа
     public void CheckResults()
     {
         BuyerController buyer = FindObjectOfType<BuyerController>();
@@ -453,9 +444,9 @@ public class SellingController : MonoBehaviour
         StartCoroutine(Endbuy());
     }
 
+    //«авершение продажи и очистка текущего чека 
     IEnumerator Endbuy()
     {
-        
         if (orderMoney > 0)
         {
             gameManager.UpdateScore(orderMoney);
@@ -473,6 +464,7 @@ public class SellingController : MonoBehaviour
         orderMoney = 0;
     }
 
+    //”становка громкости звуков по команде из опций
     public void SetVolume(float val)
     {
         GetComponent<AudioSource>().volume = val;
@@ -480,6 +472,7 @@ public class SellingController : MonoBehaviour
         Debug.Log("soundsVol set " + soundsVol);
     }
 
+    //Ќачало продажи при подходе покупател€ к кассе
         void OnTriggerEnter2D(Collider2D other)
     {
         BuyerController custemer = other.GetComponent<BuyerController>();
